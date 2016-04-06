@@ -1,0 +1,25 @@
+<h1>Add Characters ({{ teamCtrl.characters.length }}/6)</h1>
+
+<form ng-hide="teamCtrl.characters.length >= 6">
+  <input type="text" placeholder="Character" ng-model="teamCtrl.name">
+  <input id = "submit" type="submit" value="Add" ng-click="teamCtrl.addCharacter()">
+</form>
+
+<table>
+  <tbody>
+    <tr ng-repeat="character in teamCtrl.characters">
+      <td class = "characterImage">
+        <img ng-src="{{ character.image }}">
+      </td>
+        <td>
+        <h1>
+          {{ character.name }}
+          <i class="fa fa-times-circle" ng-click="teamCtrl.deleteCharacter(character)"></i>
+        </h1>
+
+        <span>{{ character.description }}</span>
+      </td>
+
+    </tr>
+  </tbody>
+</table>

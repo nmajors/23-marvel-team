@@ -1,7 +1,9 @@
-form {
-  margin-bottom: 20px;
+body {
+  font-family: Helvetica;
+  margin: 10px 5%; }
 
-}
+form {
+  margin-bottom: 20px; }
 
 input {
   outline: none;
@@ -9,40 +11,33 @@ input {
   border: 1px solid #aaa;
   border-radius: 5px;
   box-sizing: border-box;
-  padding: 2px 6px;
-}
+  padding: 2px 6px; }
 
 #submit {
   margin-left: 10px;
   background-color: white;
-  color: black;
-}
+  color: black; }
 
 .characterImage {
   width: 20%;
-  padding-right: 30px;
-}
+  padding-right: 30px; }
 
-td{
-  vertical-align: top;
-}
-img{
+td {
+  vertical-align: top; }
+
+img {
   border: 1px solid black;
   border-radius: 3px;
   width: 100%;
-  margin-bottom: 20px;
-}
+  margin-bottom: 20px; }
 
 h1 {
-  margin-top: 0;
-}
+  margin-top: 0; }
 
 i {
   color: #A00000;
-  float: right;
-}
+  float: right; }
 
 span {
   display: inline-block;
-  margin-bottom: 30px;
-}
+  margin-bottom: 30px; }

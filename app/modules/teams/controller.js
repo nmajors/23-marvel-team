@@ -31,14 +31,36 @@ import Character from './Character';
 
 class TeamsController {
 
-	constructor($http) {
+  constructor($http) {
+    this.name = "";
     this._$http = $http;
-	}
+    this.characters = [];
+    this.addCharacter();
+  }
 
   addCharacter() {
+    this._$http
+      .get(`http://gateway.marvel.com:80/v1/public/characters?name=${this.name}&apikey=ed7601d2962065f2fc12241cbc32a585`)
+      .then((response) => {
+        // console.log(response);
+        this.name = response.data.data.results[0].name;
+        this.description = response.data.data.results[0].description;
+        this.image = `${response.data.data.results[0].thumbnail.path}.${response.data.data.results[0].thumbnail.extension}`
+
+        this.character = new Character(this.name, this.description, this.image);
+
+        this.characters.push(this.character);
+        // console.log(this.characters);
+
+        this.name="";
+      })
   }
 
   deleteCharacter(character) {
+		let confirmed = confirm(`Are you sure you want to delete ${character.name} from your team?`);
+		 if (confirmed) {
+	    this.characters.splice(this.characters.indexOf(character), 1);
+		}
   }
 
 }
