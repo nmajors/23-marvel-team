@@ -42,18 +42,28 @@ class TeamsController {
     this._$http
       .get(`http://gateway.marvel.com:80/v1/public/characters?name=${this.name}&apikey=ed7601d2962065f2fc12241cbc32a585`)
       .then((response) => {
-        // console.log(response);
         this.name = response.data.data.results[0].name;
         this.description = response.data.data.results[0].description;
         this.image = `${response.data.data.results[0].thumbnail.path}.${response.data.data.results[0].thumbnail.extension}`
 
         this.character = new Character(this.name, this.description, this.image);
 
+        let newHero = this.character;
+
+
+        if (this.validating(this.character)){
+
         this.characters.push(this.character);
         // console.log(this.characters);
-
         this.name="";
+        }
       })
+      .catch((error) =>{
+        if (error.message === "Cannot read property 'name' of undefined"){
+          alert(`Could not find a marvel hero named "${this.name}," please try again!`);
+          this.name="";
+        }
+      });
   }
 
   deleteCharacter(character) {
@@ -63,6 +73,20 @@ class TeamsController {
 		}
   }
 
+  validating(newHero) {
+    console.log("validating")
+    let isValid = true;
+    this.characters.forEach((character) => {
+      if (newHero.name === character.name){
+        alert("This hero is already a member of your team. Please select another!");
+        this.name = "";
+        isValid = false;
+      }
+    });
+        return isValid;
+  }
 }
+
+
 
 export default TeamsController
